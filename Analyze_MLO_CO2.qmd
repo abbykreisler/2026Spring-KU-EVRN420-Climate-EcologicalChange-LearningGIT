@@ -4,23 +4,37 @@ author: "Abby Kreisler"
 format: html
 ---
 
-## Quarto
+## Analysis of CO2 at Maunaloa over time
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+This analysis will look at the concentration of CO2
+at Maunaloa Observatory over time.
 
 ```{r}
-1 + 1
+#| label: load-packages-and-data
+
+library("dplyr")
+library ("ggplot2")
+
+## load data
+mlo_data <- read.csv("data/monthly_in_situ_co2_mlo_cleaned.csv")
 ```
 
-You can add options to executable code like this 
+Now that the data are loaded we will make a plot of time on the x axis
+and the CO2 concentration on the y axis using ggplot.
 
 ```{r}
-#| echo: false
-2 * 2
-```
+#| label: plot-co2
 
-The `echo: false` option disables the printing of code (only output is displayed).
+# make the plot
+mlo_data %>%
+  filter(CO2 > 0) %>%
+  ggplot(aes(x = Date.1,
+             y = CO2)) +
+  geom_line()+
+  labs(title = "CO2 concentration at MLO over time",
+       x = "Year",
+       y = "Carbon Dioxide Concentration")
+
+```
+the concentration of carbon dioxide goes up strongly over time
+from the first measurements in the late 1950s
