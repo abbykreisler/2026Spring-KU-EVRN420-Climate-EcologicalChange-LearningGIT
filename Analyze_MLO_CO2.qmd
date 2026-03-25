@@ -2,6 +2,10 @@
 title: "Analyze Maunaloa CO2 Data"
 author: "Abby Kreisler"
 format: html
+execute: 
+  echo: false
+  message: false
+  warning: false
 ---
 
 ## Analysis of CO2 at Maunaloa over time
@@ -37,4 +41,4 @@ mlo_data %>%
 
 ```
 the concentration of carbon dioxide goes up strongly over time
-from the first measurements in the late 1950s
+from the first measurements in the late 1950s.
